@@ -1,0 +1,21 @@
+SongList {
+     color: white;
+     background-color : blue;
+     width: 100%;
+}
+heading {
+     color: white;
+     font-size : 40px;
+     background-color : orange;
+     display : block;
+}
+
+Author, Year, Genre {
+     font-size : 15px;
+     display: Block
+}
+Song {
+     font-size : 25px;
+     font-weight : bold;
+     display : block;
+}

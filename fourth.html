@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="stylesheet.css">
+<title>jQuery Loading Local JSON File</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<style>
+
+    body {background-color: powderblue;}
+    p {  color: red;
+  font-family: courier;
+  font-size: 150%;
+}
+
+</style>
+</head>
+<body>
+
+
+    <br/>
+   <div id = "drop" onchange = "displayed()">
+   </div>
+   <div id = "choice">
+   </div>
+
+ <script>
+
+
+     fetch("https://joshuabalbi.github.io/hw7pacs20.io/songlistfinal.json").then(
+     res => {
+         res.json().then(
+         data => {
+             if (data.length > 0) {
+
+                 var temp = [];
+                 data.forEach((itemData) => {
+                         temp.push(itemData.Song);
+                         temp.push(itemData.Author);
+                         temp.push(itemData.Year);
+                         temp.push(itemData.Genre);
+                     });
+                     document.getElementById('drop').innerHTML = makedrop("dropdown", temp);
+                 }
+             }
+             )
+         }
+         )
+
+     function makedrop(name, data)
+     {
+     	var t= "chooose a genre: ";
+        var x = []
+     	t += "<select name='" + name + "' >";
+     	for (i = 3; i< data.length; i=i+4){
+            entry = data[i];
+            for(j = 0; j< entry.length; j++){
+                if(!x.includes(entry[j])){
+                     t += "<option>" + entry[j] + "</option>";
+                     x.push(entry[j]);
+                }
+            }
+        }
+     	t+= "</select>";
+     	return t;
+     }
+
+
+     function displayed(){
+         fetch("https://joshuabalbi.github.io/hw7pacs20.io/songlistfinal.json").then(
+         res => {
+             res.json().then(
+             data => {
+                 if (data.length > 0) {
+
+                     var datalist = [];
+                     data.forEach((itemData) => {
+                             datalist.push(itemData.Song);
+                             datalist.push(itemData.Author);
+                             datalist.push(itemData.Year);
+                             datalist.push(itemData.Genre);
+                         });
+         temp = ""
+         val = (document.getElementsByName('dropdown')[0].value);
+         for (i = 3; i< datalist.length; i=i+4){
+             entry = datalist[i];
+             if (entry.includes(val)){
+                 temp += datalist[i-3]+ "<br/>";
+                 temp += datalist[i-2] + "<br/>";
+                 temp += datalist[i-1] + "<br/>";
+                 temp += val + "<br/>" + "<br/>";
+             };
+             }
+        document.getElementById('choice').innerHTML = temp;
+
+    }
+}
+    )
+}
+)
+         }
+
+
+ </script>
+
+
+
+</body>
+</html>

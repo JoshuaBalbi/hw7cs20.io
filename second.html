@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="stylesheet.css">
+<title>jQuery Loading Local JSON File</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<style>
+
+table, th, td {
+  border: 1px solid;
+}
+
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+
+</style>
+</head>
+<body>
+
+    <script>
+        fetch("https://joshuabalbi.github.io/hw7pacs20.io/songfinal.json").then(
+        res => {
+            res.json().then(
+            data => {
+                console.log(data.data);
+                if (data.length > 0) {
+
+                    var temp = "";
+                    data.forEach((itemData) => {
+                        temp += "<tr>";
+                            temp += "<td>" + itemData.Song + "</td>";
+                            temp += "<td>" + itemData.Author + "</td>";
+                            temp += "<td>" + itemData.Year + "</td>";
+                            temp += "<td>" + itemData.Genre + "</td></tr>";
+                        });
+                        document.getElementById('data').innerHTML = temp;
+                    }
+                }
+                )
+            }
+            )
+    </script>
+
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Song</th>
+            <th>Artist</th>
+            <th>Year</th>
+            <th>Genre</th>
+          </tr>
+        </thead>
+        <tbody id="data">
+
+        </tbody>
+      </table>
+  </div>
+
+</body>
+</html>

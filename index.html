@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="stylesheet.css">
+<meta charset="utf-8">
+<title>jQuery Loading Local JSON File</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+ <script>
+     fetch("https://joshuabalbi.github.io/hw7pacs20.io/songfinal.json").then(
+     res => {
+         res.json().then(
+         fun => {
+            document.getElementById('data').innerHTML = JSON.stringify(fun);
+            }
+         )
+     }
+     )
+
+ </script>
+
+ <br/>
+<div id = "data">
+
+</div>
+
+<a class="page" href=./second.html>table(for fun)</a>
+<a class="page" href=./third.html>part3</a>
+<a class="page" href=./fourth.html>part4</a>
+</body>
+</html>
